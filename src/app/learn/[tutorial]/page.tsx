@@ -1,6 +1,14 @@
 import { notFound } from "next/navigation";
+
 import { tutorials } from "@/lib/learn";
+import {
+  getSiteUrl,
+  getLearnUrl,
+  getTutorialUrl,
+} from "@/lib/urls";
+
 import Breadcrumbs from "@/components/learn/Breadcrumbs";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type TutorialPageProps = {
   params: Promise<{
@@ -12,7 +20,6 @@ export default async function TutorialPage({
   params,
 }: TutorialPageProps) {
   const { tutorial: tutorialSlug } = await params;
-
   const tutorial = tutorials[tutorialSlug];
 
   if (!tutorial) {
@@ -21,6 +28,22 @@ export default async function TutorialPage({
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-10">
+      <BreadcrumbJsonLd
+        items={[
+          {
+            name: "Home",
+            url: getSiteUrl(),
+          },
+          {
+            name: "Learn",
+            url: getLearnUrl(),
+          },
+          {
+            name: tutorial.title,
+            url: getTutorialUrl(tutorial.slug),
+          },
+        ]}
+      />
 
       <Breadcrumbs tutorial={tutorial} />
 
@@ -35,7 +58,6 @@ export default async function TutorialPage({
       <p className="mt-4 text-lg text-zinc-600">
         Learn {tutorial.title} step by step.
       </p>
-
     </div>
   );
 }

@@ -45,7 +45,7 @@ export default function MobileNav({
             onClick={onClose}
             className="text-xl font-bold text-zinc-900 dark:text-zinc-100"
           >
-            DevLearn
+            Nonware.dev
           </Link>
 
           <button

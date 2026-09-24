@@ -14,7 +14,7 @@ export default function Footer() {
               href="/"
               className="text-xl font-bold text-zinc-900 dark:text-zinc-100"
             >
-              DevLearn
+              Nonware.dev
             </Link>
 
             <p className="mt-3 max-w-xs text-sm leading-6 text-zinc-600 dark:text-zinc-400">
@@ -113,7 +113,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-12 flex flex-col gap-3 border-t border-zinc-200 pt-6 text-sm text-zinc-500 dark:border-zinc-800 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 DevLearn. All rights reserved.</p>
+          <p>&copy; 2026 Nonware.dev. All rights reserved.</p>
 
           <p>
             Built with Next.js

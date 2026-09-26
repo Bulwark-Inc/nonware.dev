@@ -4,6 +4,8 @@ import "./globals.css";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Chatbot from "@/components/chatbot/Chatbot";
+
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 import { getSiteUrl } from "@/lib/urls";
@@ -27,6 +29,7 @@ export const metadata: Metadata = {
     description:
       "Practical tutorials, guides and projects for developers.",
     url: getSiteUrl(),
+
     images: [
       {
         url: "/og-image.png",
@@ -78,6 +81,8 @@ export default function RootLayout({
 
             <Footer />
           </div>
+
+          <Chatbot />
         </ThemeProvider>
       </body>
     </html>

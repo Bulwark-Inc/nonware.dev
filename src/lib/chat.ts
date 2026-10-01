@@ -12,18 +12,18 @@ export type ChatbotContext = {
   capabilities?: string[];
 };
 
-const chatApiUrl = process.env.CHAT_API_URL;
-
-if (!chatApiUrl) {
-  throw new Error("CHAT_API_URL is not configured");
-}
-
 const auth = new GoogleAuth();
 
 export async function sendChatMessage(
   messages: Message[],
   context: ChatbotContext
 ) {
+  const chatApiUrl = process.env.CHAT_API_URL;
+
+  if (!chatApiUrl) {
+    throw new Error("CHAT_API_URL is not configured");
+  }
+
   const client = await auth.getIdTokenClient(chatApiUrl);
 
   const response = await client.request({

@@ -1,0 +1,578 @@
+# Template Literals
+
+Template literals provide a clean and powerful way to create strings that contain variables, expressions, and multiple lines of text.
+
+Instead of building strings like this:
+
+<CodeBlock language="javascript">
+const name = "Ada";
+const age = 36;
+
+const message = "My name is " + name + " and I am " + age + " years old.";
+
+console.log(message); 
+</CodeBlock>
+
+You can write:
+
+<CodeBlock language="javascript">
+const name = "Ada";
+const age = 36;
+
+const message = `My name is $&#123;name&#125; and I am $&#123;age&#125; years old.`;
+
+console.log(message); 
+</CodeBlock>
+
+The second version is easier to read and becomes especially useful when working with dynamic data.
+
+## What You'll Learn
+
+By the end of this lesson, you'll understand:
+
+* What template literals are
+* How backticks work
+* String interpolation
+* Expressions inside `${}`
+* Multi-line strings
+* Nested expressions
+* Conditional text
+* Dynamic HTML strings
+* Common mistakes
+
+---
+
+## 1. Creating a Template Literal
+
+Template literals use **backticks**:
+
+<CodeBlock language="javascript">
+const message = `Hello, JavaScript!`;
+
+console.log(message); 
+</CodeBlock>
+
+<ExpectedOutput>
+Hello, JavaScript!
+</ExpectedOutput>
+
+Backticks are different from:
+
+```text
+' single quotes
+" double quotes
+```
+
+They allow you to embed JavaScript expressions directly inside a string.
+
+---
+
+## 2. String Interpolation
+
+The most important feature of template literals is **interpolation**.
+
+You can insert a variable using:
+
+```text
+$&#123;variable&#125;
+```
+
+For example:
+
+<CodeBlock language="javascript">
+const name = "Ada";
+
+const message = `Hello, $&#123;name&#125;!`;
+
+console.log(message); 
+</CodeBlock>
+
+<ExpectedOutput>
+Hello, Ada!
+</ExpectedOutput>
+
+JavaScript evaluates the expression inside `${}` and places its result into the string.
+
+---
+
+## 3. Multiple Variables
+
+You can insert as many expressions as you need.
+
+<CodeBlock language="javascript">
+const firstName = "Ada";
+const lastName = "Lovelace";
+const profession = "programmer";
+
+const profile = `$&#123;firstName&#125; $&#123;lastName&#125; is a $&#123;profession&#125;.`;
+
+console.log(profile); 
+</CodeBlock>
+
+<ExpectedOutput>
+Ada Lovelace is a programmer.
+</ExpectedOutput>
+
+This is much cleaner than repeatedly using `+`.
+
+---
+
+## 4. Expressions Inside Template Literals
+
+You aren't limited to variables.
+
+You can put JavaScript expressions inside `${}`.
+
+<CodeBlock language="javascript">
+const price = 50;
+const quantity = 3;
+
+const message = `Total: $$&#123;price * quantity&#125;`;
+
+console.log(message); 
+</CodeBlock>
+
+<ExpectedOutput>
+Total: $150
+</ExpectedOutput>
+
+The expression:
+
+<CodeBlock language="javascript">
+price * quantity
+</CodeBlock>
+
+is evaluated first.
+
+Its result is then inserted into the string.
+
+You can also perform other operations:
+
+<CodeBlock language="javascript">
+const a = 10;
+const b = 5;
+
+console.log(`Sum: $&#123;a + b&#125;`);
+console.log(`Difference: $&#123;a - b&#125;`);
+console.log(`Product: $&#123;a * b&#125;`); 
+</CodeBlock>
+
+---
+
+## 5. Calling Functions
+
+You can call functions inside `${}` too.
+
+<CodeBlock language="javascript">
+const name = "ada";
+
+const message = `Hello, $&#123;name.toUpperCase()&#125;!`;
+
+console.log(message); 
+</CodeBlock>
+
+<ExpectedOutput>
+Hello, ADA!
+</ExpectedOutput>
+
+You can even use a function:
+
+<CodeBlock language="javascript">
+function greet(name) &#123;
+  return `Hello, $&#123;name&#125;!`;
+&#125;
+
+console.log(`$&#123;greet("Ada")&#125;`); 
+</CodeBlock>
+
+<ExpectedOutput>
+Hello, Ada!
+</ExpectedOutput>
+
+<Note>
+`${}` can contain a JavaScript expression, not just a variable.
+</Note>
+
+---
+
+## 6. Multi-Line Strings
+
+Template literals can span multiple lines.
+
+<CodeBlock language="javascript">
+const message = `Welcome to Nonware.dev.
+
+Learn JavaScript.
+Build real projects.
+Become a better developer.`;
+
+console.log(message); 
+</CodeBlock>
+
+<ExpectedOutput>
+Welcome to Nonware.dev.
+
+Learn JavaScript.
+Build real projects.
+Become a better developer. 
+</ExpectedOutput>
+
+With older string syntax, creating multi-line strings was less convenient.
+
+Template literals make it natural.
+
+---
+
+## 7. Formatting Text
+
+Template literals are useful for creating readable messages.
+
+<CodeBlock language="javascript">
+const product = "Laptop";
+const price = 1200;
+const quantity = 2;
+
+const receipt = `Product: $&#123;product&#125;
+Price: $$&#123;price&#125;
+Quantity: $&#123;quantity&#125;
+Total: $$&#123;price * quantity&#125;`;
+
+console.log(receipt); 
+</CodeBlock>
+
+<ExpectedOutput>
+Product: Laptop
+Price: $1200
+Quantity: 2
+Total: $2400
+</ExpectedOutput>
+
+This pattern is useful for:
+
+* Receipts
+* Emails
+* Notifications
+* Reports
+* Logs
+* Dynamic UI content
+
+---
+
+## 8. Conditional Text
+
+You can even use a ternary expression inside a template literal.
+
+<CodeBlock language="javascript">
+const age = 20;
+
+const message = `You are $&#123;age >= 18 ? "an adult" : "a minor"&#125;.`;
+
+console.log(message); 
+</CodeBlock>
+
+<ExpectedOutput>
+You are an adult.
+</ExpectedOutput>
+
+The expression:
+
+<CodeBlock language="javascript">
+age >= 18 ? "an adult" : "a minor"
+</CodeBlock>
+
+determines which text gets inserted.
+
+We'll explore the ternary operator and conditional logic in much more detail later.
+
+---
+
+## 9. Working with Objects
+
+Template literals become especially useful when displaying information stored in objects.
+
+<CodeBlock language="javascript">
+const user = &#123;
+  name: "Ada",
+  role: "Developer",
+&#125;;
+
+const message = `$&#123;user.name&#125; is a $&#123;user.role&#125;.`;
+
+console.log(message); 
+</CodeBlock>
+
+<ExpectedOutput>
+Ada is a Developer.
+</ExpectedOutput>
+
+You can access object properties directly inside the expression.
+
+---
+
+## 10. Dynamic URLs
+
+Template literals are also commonly used to construct URLs.
+
+<CodeBlock language="javascript">
+const username = "ada";
+
+const profileUrl = `https://example.com/users/$&#123;username&#125;`;
+
+console.log(profileUrl); 
+</CodeBlock>
+
+<ExpectedOutput>
+https://example.com/users/ada
+</ExpectedOutput>
+
+Or with multiple values:
+
+<CodeBlock language="javascript">
+const category = "javascript";
+const lesson = "strings";
+
+const url = `/learn/$&#123;category&#125;/$&#123;lesson&#125;`;
+
+console.log(url); 
+</CodeBlock>
+
+<ExpectedOutput>
+/learn/javascript/strings
+</ExpectedOutput>
+
+This pattern is extremely common in web development.
+
+---
+
+## 11. Template Literals vs String Concatenation
+
+Consider this:
+
+<CodeBlock language="javascript">
+const name = "Ada";
+const language = "JavaScript";
+
+const message =
+"Hello " + name + ", welcome to " + language + "!"; 
+</CodeBlock>
+
+It works, but becomes harder to read as the string grows.
+
+With a template literal:
+
+<CodeBlock language="javascript">
+const message = `Hello $&#123;name&#125;, welcome to $&#123;language&#125;!`;
+</CodeBlock>
+
+The structure of the final message is immediately visible.
+
+That's one of the biggest practical advantages of template literals.
+
+---
+
+## 12. Escaping Backticks
+
+Because template literals use backticks, you need to escape a backtick if you want one inside the string.
+
+<CodeBlock language="javascript">
+const message = `Use \`backticks\` for template literals.`;
+
+console.log(message); 
+</CodeBlock>
+
+<ExpectedOutput>
+Use `backticks` for template literals.
+</ExpectedOutput>
+
+The backslash tells JavaScript that the backtick is part of the string rather than the end of the template literal.
+
+---
+
+## 13. Whitespace Matters
+
+Template literals preserve the whitespace and line breaks you write.
+
+For example:
+
+<CodeBlock language="javascript">
+const message = `
+Hello
+World
+`;
+
+console.log(message); 
+</CodeBlock>
+
+The resulting string includes the line breaks and spaces.
+
+<Warning>
+Template literals preserve whitespace and line breaks. This is useful for formatting text, but it can also produce unwanted whitespace.
+</Warning>
+
+---
+
+## 14. Dynamic HTML
+
+Template literals are often used to construct HTML strings.
+
+For example:
+
+<CodeBlock language="javascript">
+const name = "Ada";
+
+const html = `  &lt;article&gt;
+    &lt;h2&gt;$&#123;name&#125;&lt;/h2&gt;
+    &lt;p&gt;Welcome to the website.&lt;/p&gt;
+  &lt;/article&gt;`;
+
+console.log(html); 
+</CodeBlock>
+
+This produces one string containing the HTML.
+
+Modern frameworks such as React and Next.js provide safer and more structured ways to render UI, so you should not assume that manually constructing HTML strings is always the right approach.
+
+Still, understanding this pattern helps you recognize template literals in real code.
+
+---
+
+## 15. A Practical Example
+
+Let's build a small user profile message.
+
+<CodeBlock language="javascript">
+const user = &#123;
+  name: "Ada Lovelace",
+  role: "Developer",
+  projects: 12,
+&#125;;
+
+const profile = `Name: $&#123;user.name&#125;
+Role: $&#123;user.role&#125;
+Projects: $&#123;user.projects&#125;`;
+
+console.log(profile); 
+</CodeBlock>
+
+<ExpectedOutput>
+Name: Ada Lovelace
+Role: Developer
+Projects: 12
+</ExpectedOutput>
+
+Notice how cleanly the data maps to the output.
+
+This is one reason template literals are so useful in application development.
+
+---
+
+## Try It Yourself
+
+Create:
+
+```text
+template-literals.js
+```
+
+Then add:
+
+<CodeBlock language="javascript">
+const product = "JavaScript Course";
+const price = 49.99;
+const students = 1250;
+
+const message = `Product: $&#123;product&#125;
+Price: $$&#123;price&#125;
+Students: $&#123;students&#125;`;
+
+console.log(message); 
+</CodeBlock>
+
+Run it:
+
+<Terminal>
+node template-literals.js
+</Terminal>
+
+You should see:
+
+<ExpectedOutput>
+Product: JavaScript Course
+Price: $49.99
+Students: 1250
+</ExpectedOutput>
+
+Now add:
+
+<CodeBlock language="javascript">
+const discountedPrice = price * 0.8;
+
+console.log(`Discounted price: $$&#123;discountedPrice.toFixed(2)&#125;`); 
+</CodeBlock>
+
+Then try creating a message that tells the user how much they save:
+
+<CodeBlock language="javascript">
+const savings = price - discountedPrice;
+
+console.log(`You save $$&#123;savings.toFixed(2)&#125;.`); 
+</CodeBlock>
+
+---
+
+## Common Mistakes
+
+Correct:
+
+<CodeBlock language="javascript">
+const message = `Hello $&#123;name&#125;`;
+</CodeBlock>
+
+This does not interpolate the variable:
+
+<CodeBlock language="javascript">
+const message = "Hello $&#123;name&#125;";
+</CodeBlock>
+
+With regular quotes, `${name}` is treated as ordinary text.
+
+Another common mistake is forgetting the `${}` syntax:
+
+<CodeBlock language="javascript">
+const name = "Ada";
+
+const message = `Hello name`; 
+</CodeBlock>
+
+This produces:
+
+<ExpectedOutput>
+Hello name
+</ExpectedOutput>
+
+You need:
+
+<CodeBlock language="javascript">
+const message = `Hello $&#123;name&#125;`;
+</CodeBlock>
+
+---
+
+## Key Takeaways
+
+* Template literals use backticks.
+* `${}` lets you insert JavaScript expressions into strings.
+* Expressions can contain variables, calculations, function calls, and more.
+* Template literals make dynamic strings easier to read.
+* They support multi-line strings naturally.
+* They are useful for URLs, messages, reports, and dynamic content.
+* Whitespace and line breaks inside template literals are preserved.
+* Template literals are often cleaner than string concatenation with `+`.
+
+## What's Next?
+
+You've now covered the core JavaScript data-handling concepts:
+
+**Variables → Data Types → Operators → Strings → Numbers → Type Conversion → Template Literals**
+
+Next, we'll move into **Control Flow**, starting with `if` and `else` — the foundation for teaching your programs how to make decisions.

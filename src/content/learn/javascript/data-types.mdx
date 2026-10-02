@@ -1,0 +1,666 @@
+# JavaScript Data Types
+
+Every value in JavaScript has a type.
+
+A type tells JavaScript what kind of value it is dealing with and determines what you can do with that value.
+
+For example:
+
+```text
+"Hello" → text
+
+42      → number
+
+true    → true/false value
+```
+
+Understanding data types is important because real applications constantly work with different kinds of data.
+
+## The Main JavaScript Data Types
+
+JavaScript has several built-in data types.
+
+The most commonly used ones are:
+
+* String
+* Number
+* Boolean
+* Undefined
+* Null
+* BigInt
+* Symbol
+* Object
+
+We'll start with the types you'll use most often.
+
+## Strings
+
+A string represents text.
+
+You can create a string using single quotes:
+
+<CodeBlock language="javascript">
+
+const name = 'Alex';
+
+</CodeBlock>
+
+Double quotes:
+
+<CodeBlock language="javascript">
+
+const name = "Alex";
+
+</CodeBlock>
+
+Or template literals:
+
+<CodeBlock language="javascript">
+
+const name = `Alex`;
+
+</CodeBlock>
+
+All three represent strings.
+
+You can check the type using `typeof`:
+
+<CodeBlock language="javascript">
+
+const name = "Alex";
+
+console.log(typeof name);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+string
+
+</ExpectedOutput>
+
+Strings can contain words, sentences, symbols, and other text.
+
+```text
+"Hello"
+
+"JavaScript"
+
+"123"
+
+"nonware.dev"
+```
+
+Notice that `"123"` is text, not a number.
+
+That's an important distinction.
+
+## Numbers
+
+JavaScript uses the `number` type for numeric values.
+
+<CodeBlock language="javascript">
+
+const age = 25;
+
+const price = 99.99;
+
+const temperature = -5;
+
+</CodeBlock>
+
+You can perform mathematical operations with numbers:
+
+<CodeBlock language="javascript">
+
+const price = 100;
+
+const quantity = 3;
+
+const total = price * quantity;
+
+console.log(total);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+300
+
+</ExpectedOutput>
+
+Check the type:
+
+<CodeBlock language="javascript">
+
+console.log(typeof 42);
+
+console.log(typeof 3.14);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+number
+
+number
+
+</ExpectedOutput>
+
+JavaScript's `number` type can represent both whole numbers and decimal numbers.
+
+## Booleans
+
+A boolean represents one of two values:
+
+```text
+true
+
+false
+```
+
+For example:
+
+<CodeBlock language="javascript">
+
+const isLoggedIn = true;
+
+const isAdmin = false;
+
+</CodeBlock>
+
+Booleans are extremely important for decision-making.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const isLoggedIn = true;
+
+if (isLoggedIn) &#123;
+
+console.log("Welcome back!");
+
+&#125;
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+Welcome back!
+
+</ExpectedOutput>
+
+We'll explore `if` statements in detail later.
+
+## Undefined
+
+A variable can exist without having a value assigned to it.
+
+For example:
+
+<CodeBlock language="javascript">
+
+let username;
+
+console.log(username);
+
+</CodeBlock>
+
+The result is:
+
+<ExpectedOutput>
+
+undefined
+
+</ExpectedOutput>
+
+You can also check its type:
+
+<CodeBlock language="javascript">
+
+let username;
+
+console.log(typeof username);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+undefined
+
+</ExpectedOutput>
+
+`undefined` generally means that a value has not been assigned.
+
+## Null
+
+`null` represents an intentional absence of a value.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const selectedUser = null;
+
+</CodeBlock>
+
+This can mean:
+
+> There is currently no selected user.
+
+The important distinction is:
+
+```text
+undefined → a value hasn't been assigned
+
+null      → we intentionally have no value
+```
+
+You'll encounter both frequently when working with APIs and application data.
+
+## Objects
+
+Objects allow you to group related information together.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const user = &#123;
+
+name: "Alex",
+
+age: 25,
+
+isDeveloper: true,
+
+&#125;;
+
+</CodeBlock>
+
+Instead of storing three unrelated variables:
+
+```text
+name
+
+age
+
+isDeveloper
+```
+
+we can represent them as one `user` object.
+
+You can access individual properties:
+
+<CodeBlock language="javascript">
+
+console.log(user.name);
+
+console.log(user.age);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+Alex
+
+25
+
+</ExpectedOutput>
+
+Objects are one of the most important structures in JavaScript.
+
+You'll work with them constantly when building applications.
+
+## Arrays
+
+Arrays are ordered collections of values.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const languages = ["JavaScript", "Python", "TypeScript"];
+
+</CodeBlock>
+
+You can access individual values using their index:
+
+<CodeBlock language="javascript">
+
+console.log(languages[0]);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+JavaScript
+
+</ExpectedOutput>
+
+Arrays can contain different types of values:
+
+<CodeBlock language="javascript">
+
+const values = ["Alex", 25, true];
+
+</CodeBlock>
+
+Although JavaScript allows this, in real applications you'll often use arrays containing values of a consistent structure.
+
+We'll explore arrays much more deeply later.
+
+## BigInt
+
+JavaScript also has a `bigint` type for integers that are larger than the normal safe integer range of the `number` type.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const hugeNumber = 9007199254740993n;
+
+console.log(typeof hugeNumber);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+bigint
+
+</ExpectedOutput>
+
+The `n` at the end tells JavaScript that this is a BigInt.
+
+You won't need BigInt for most beginner projects, but it's useful to know that it exists.
+
+## Symbol
+
+A `symbol` creates a unique value.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const id = Symbol("id");
+
+console.log(typeof id);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+symbol
+
+</ExpectedOutput>
+
+Symbols are mainly used for specialized JavaScript features and advanced programming patterns.
+
+You don't need to use them in your beginner projects yet.
+
+## Checking Types with `typeof`
+
+The `typeof` operator is one of the easiest ways to inspect a value.
+
+Try:
+
+<CodeBlock language="javascript">
+
+console.log(typeof "Hello");
+
+console.log(typeof 42);
+
+console.log(typeof true);
+
+console.log(typeof undefined);
+
+const emptyObject = {};
+
+console.log(typeof emptyObject);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+string
+
+number
+
+boolean
+
+undefined
+
+object
+
+</ExpectedOutput>
+
+This is particularly useful when debugging.
+
+For example, if you expected a number but received a string from an API, `typeof` can quickly reveal the problem.
+
+## A JavaScript Quirk: `typeof null`
+
+There's a famous JavaScript behavior worth knowing:
+
+<CodeBlock language="javascript">
+
+console.log(typeof null);
+
+</CodeBlock>
+
+The result is:
+
+<ExpectedOutput>
+
+object
+
+</ExpectedOutput>
+
+This is a historical behavior in JavaScript.
+
+`null` is not actually an object in the way ordinary JavaScript objects are.
+
+You don't need to memorize why this happens yet. Just remember that:
+
+```text
+typeof null === "object"
+```
+
+is a known JavaScript quirk.
+
+## Primitive vs Object Values
+
+JavaScript data is often discussed in terms of **primitive values** and **objects**.
+
+Primitive types include:
+
+* String
+* Number
+* Boolean
+* Undefined
+* Null
+* BigInt
+* Symbol
+
+Objects include things such as:
+
+* Objects
+* Arrays
+* Functions
+
+This distinction becomes especially important when you learn about copying values, references, and mutation.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const user = &#123;
+
+name: "Alex",
+
+&#125;;
+
+</CodeBlock>
+
+`user` refers to an object rather than behaving exactly like a primitive value.
+
+We'll explore this concept more deeply when we work with objects.
+
+## A Practical Example
+
+Imagine an application storing information about a product:
+
+<CodeBlock language="javascript">
+
+const productName = "Laptop";
+
+const price = 1200;
+
+const inStock = true;
+
+const tags = ["computer", "technology"];
+
+const seller = &#123;
+
+name: "Alex",
+
+verified: true,
+
+&#125;;
+
+</CodeBlock>
+
+We are using several data types together:
+
+```text
+productName → string
+
+price       → number
+
+inStock     → boolean
+
+tags        → array
+
+seller      → object
+```
+
+This is much closer to the kind of data you'll encounter in real applications.
+
+## Try It Yourself
+
+Create several variables containing different types:
+
+<CodeBlock language="javascript">
+
+const name = "Alex";
+
+const age = 25;
+
+const isLearning = true;
+
+const favoriteLanguages = ["JavaScript", "TypeScript"];
+
+const developer = &#123;
+
+name: "Alex",
+
+experience: 1,
+
+&#125;;
+
+</CodeBlock>
+
+Then inspect their types:
+
+<CodeBlock language="javascript">
+
+console.log(typeof name);
+
+console.log(typeof age);
+
+console.log(typeof isLearning);
+
+console.log(typeof favoriteLanguages);
+
+console.log(typeof developer);
+
+</CodeBlock>
+
+Notice that both arrays and ordinary objects return `"object"` when checked with `typeof`.
+
+That's another JavaScript behavior we'll investigate later.
+
+## Common Mistakes
+
+### Confusing Numbers and Strings
+
+These are different:
+
+<CodeBlock language="javascript">
+
+const age = 25;
+
+const ageText = "25";
+
+</CodeBlock>
+
+The first is a number.
+
+The second is a string.
+
+This difference matters when performing calculations.
+
+For example:
+
+<CodeBlock language="javascript">
+
+console.log(10 + 5);
+
+console.log("10" + "5");
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+15
+
+105
+
+</ExpectedOutput>
+
+The first performs numeric addition.
+
+The second joins two strings together.
+
+### Assuming `null` and `undefined` Are Identical
+
+They are related but communicate different ideas.
+
+```text
+undefined → no value has been assigned
+
+null      → intentionally no value
+```
+
+Understanding this distinction becomes particularly useful when working with APIs and databases.
+
+## Key Takeaways
+
+* JavaScript values have different data types.
+* Strings represent text.
+* Numbers represent numeric values.
+* Booleans represent `true` or `false`.
+* `undefined` generally means a value hasn't been assigned.
+* `null` represents an intentional absence of a value.
+* Objects group related data.
+* Arrays store ordered collections of values.
+* `typeof` can help you inspect a value's type.
+* JavaScript has both primitive values and objects.
+* Some JavaScript behaviors, such as `typeof null`, are historical quirks worth knowing.
+
+## What's Next?
+
+Now that you understand the major JavaScript data types, we'll learn how JavaScript performs operations on those values.
+
+Next up: **Operators**.

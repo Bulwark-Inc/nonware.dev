@@ -1,0 +1,463 @@
+# Variables
+
+A variable is a named place where your program can keep a value.
+
+Variables are one of the first concepts you need to understand because almost every useful JavaScript program works with data: names, prices, users, settings, API responses, and much more.
+
+In JavaScript, you'll mainly create variables with:
+
+* `const`
+* `let`
+
+You'll also encounter `var` in older JavaScript code, but modern JavaScript generally favors `const` and `let`.
+
+## Creating a Variable
+
+Let's create a variable containing a name:
+
+<CodeBlock language="javascript">
+
+const name = "Alex";
+
+</CodeBlock>
+
+This can be read as:
+
+```text
+Create a constant called name and give it the value "Alex".
+```
+
+We can then use the variable:
+
+<CodeBlock language="javascript">
+
+const name = "Alex";
+
+console.log(name);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+Alex
+
+</ExpectedOutput>
+
+Instead of writing `"Alex"` everywhere, we can refer to it using `name`.
+
+That's the basic idea behind variables.
+
+## `const` — Your Default Choice
+
+Use `const` when you don't intend to assign a different value to the variable later.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const username = "alex";
+
+const age = 25;
+
+const country = "Nigeria";
+
+</CodeBlock>
+
+These values can be used throughout your program:
+
+<CodeBlock language="javascript">
+
+const username = "alex";
+
+const age = 25;
+
+console.log(username);
+
+console.log(age);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+alex
+
+25
+
+</ExpectedOutput>
+
+A useful modern JavaScript habit is:
+
+> Start with `const`. Use `let` when you actually need to change the variable's value.
+
+## Changing a Variable with `let`
+
+Sometimes a value needs to change while your program is running.
+
+For example, consider a user's score:
+
+<CodeBlock language="javascript">
+
+let score = 0;
+
+score = 10;
+
+score = 20;
+
+console.log(score);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+20
+
+</ExpectedOutput>
+
+Because `score` changes, `let` is appropriate here.
+
+You can think of it this way:
+
+```text
+const → this variable will not be reassigned
+let   → this variable may be reassigned
+```
+
+## Reassignment vs Changing Data
+
+There is an important distinction here.
+
+When you use `const`, you cannot reassign the variable:
+
+<CodeBlock language="javascript">
+
+const age = 25;
+
+age = 26;
+
+</CodeBlock>
+
+This produces an error because the variable itself cannot be assigned a new value.
+
+But `const` does **not** mean that every piece of data associated with the variable is completely immutable.
+
+For example, we'll later see that objects and arrays declared with `const` can have their contents changed.
+
+For now, remember:
+
+> `const` prevents reassignment of the variable. It does not automatically make every value immutable.
+
+This distinction becomes important as your JavaScript knowledge grows.
+
+## Variable Names
+
+JavaScript variable names should describe the value they contain.
+
+Good examples:
+
+<CodeBlock language="javascript">
+
+const firstName = "Alex";
+
+const userAge = 25;
+
+const productPrice = 49.99;
+
+const isLoggedIn = true;
+
+</CodeBlock>
+
+Less useful names:
+
+<CodeBlock language="javascript">
+
+const x = "Alex";
+
+const a = 25;
+
+const thing = 49.99;
+
+</CodeBlock>
+
+Short names aren't always wrong. For example, `i` is commonly used as a loop counter.
+
+But for most application code, descriptive names make your programs easier to understand.
+
+## JavaScript Naming Conventions
+
+A common convention in JavaScript is **camelCase**.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const firstName = "Alex";
+
+const accountBalance = 500;
+
+const isAuthenticated = true;
+
+</CodeBlock>
+
+The first word starts with lowercase, and additional words begin with uppercase letters.
+
+For variables and functions, you'll commonly see:
+
+```text
+firstName
+
+userEmail
+
+totalPrice
+
+isLoggedIn
+
+getUser()
+```
+
+We'll use this convention throughout the tutorial.
+
+## Variables Can Store Different Values
+
+Variables aren't limited to text.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const name = "Alex";
+
+const age = 25;
+
+const isDeveloper = true;
+
+</CodeBlock>
+
+Here:
+
+* `name` contains text.
+* `age` contains a number.
+* `isDeveloper` contains a boolean value.
+
+These are different JavaScript data types.
+
+We'll explore data types in detail in the next lessons.
+
+## Using Variables in Expressions
+
+Variables become much more useful when you combine them.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const price = 100;
+
+const quantity = 3;
+
+const total = price * quantity;
+
+console.log(total);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+300
+
+</ExpectedOutput>
+
+Here, JavaScript calculates the value of `price * quantity` and stores the result in `total`.
+
+This is how variables start becoming useful in real programs.
+
+## Variables and Template Literals
+
+You can also combine variables with text using template literals.
+
+<CodeBlock language="javascript">
+
+const name = "Alex";
+
+const age = 25;
+
+console.log(`My name is ${name} and I am ${age} years old.`);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+My name is Alex and I am 25 years old.
+
+</ExpectedOutput>
+
+The `${...}` syntax allows us to insert values into a template literal.
+
+You'll use this pattern frequently in modern JavaScript.
+
+## A Practical Example
+
+Imagine we're building a simple shopping cart.
+
+<CodeBlock language="javascript">
+
+const product = "Laptop";
+
+const price = 1200;
+
+let quantity = 1;
+
+quantity = 2;
+
+const total = price * quantity;
+
+console.log(`Product: ${product}`);
+
+console.log(`Quantity: ${quantity}`);
+
+console.log(`Total: $${total}`);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+Product: Laptop
+
+Quantity: 2
+
+Total: $2400
+
+</ExpectedOutput>
+
+Notice how each variable has a clear responsibility:
+
+```text
+product  → what we're buying
+price    → price of one item
+quantity → how many items
+total    → calculated result
+```
+
+This is a simple example, but the same principle applies to much larger applications.
+
+## Common Mistakes
+
+### Using `let` for Everything
+
+You might see beginners write:
+
+<CodeBlock language="javascript">
+
+let name = "Alex";
+
+let age = 25;
+
+let country = "Nigeria";
+
+</CodeBlock>
+
+This works, but none of these values are reassigned.
+
+Prefer:
+
+<CodeBlock language="javascript">
+
+const name = "Alex";
+
+const age = 25;
+
+const country = "Nigeria";
+
+</CodeBlock>
+
+Using `const` communicates your intention more clearly.
+
+### Trying to Reassign a `const`
+
+This won't work:
+
+<CodeBlock language="javascript">
+
+const score = 100;
+
+score = 200;
+
+</CodeBlock>
+
+If the value needs to be reassigned, use `let`.
+
+### Using Unclear Names
+
+Compare:
+
+<CodeBlock language="javascript">
+
+const x = 1499;
+
+</CodeBlock>
+
+with:
+
+<CodeBlock language="javascript">
+
+const productPrice = 1499;
+
+</CodeBlock>
+
+The second version communicates what the value represents.
+
+## Try It Yourself
+
+Create a small program that stores information about yourself.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const name = "Alex";
+
+const age = 25;
+
+const favoriteLanguage = "JavaScript";
+
+console.log(`My name is ${name}.`);
+
+console.log(`I am ${age} years old.`);
+
+console.log(`My favorite language is ${favoriteLanguage}.`);
+
+</CodeBlock>
+
+Then change the values and run the program again.
+
+After that, try adding your own variables.
+
+For example:
+
+```text
+city
+
+country
+
+favoriteFood
+
+isLearningJavaScript
+```
+
+The goal is to get comfortable creating variables and using their values.
+
+## Key Takeaways
+
+* Variables allow programs to store and reuse values.
+* Use `const` when a variable should not be reassigned.
+* Use `let` when a variable needs to be reassigned.
+* Prefer descriptive variable names.
+* JavaScript commonly uses camelCase for variable and function names.
+* Variables can store different types of values.
+* Template literals make it easy to combine text and variables.
+* In modern JavaScript, `const` is generally the default choice.
+
+## What's Next?
+
+Variables give us a way to store data.
+
+Next, we'll look at the different **data types** JavaScript provides and learn how JavaScript represents numbers, strings, booleans, objects, and other kinds of values.

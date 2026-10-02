@@ -58,6 +58,42 @@ export function useMDXComponents(
       </li>
     ),
 
+    table: ({ children }) => (
+      <div className="my-6 overflow-x-auto">
+        <table className="w-full border-collapse border border-zinc-300 text-sm dark:border-zinc-700">
+          {children}
+        </table>
+      </div>
+    ),
+
+    thead: ({ children }) => (
+      <thead className="bg-zinc-100 dark:bg-zinc-800">
+        {children}
+      </thead>
+    ),
+
+    tbody: ({ children }) => (
+      <tbody>{children}</tbody>
+    ),
+
+    tr: ({ children }) => (
+      <tr className="border-b border-zinc-200 dark:border-zinc-700">
+        {children}
+      </tr>
+    ),
+
+    th: ({ children }) => (
+      <th className="border border-zinc-300 px-4 py-3 text-left font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100">
+        {children}
+      </th>
+    ),
+
+    td: ({ children }) => (
+      <td className="border border-zinc-300 px-4 py-3 text-zinc-700 dark:border-zinc-700 dark:text-zinc-300">
+        {children}
+      </td>
+    ),
+
     a: ({ children, href }) => (
       <a
         href={href}

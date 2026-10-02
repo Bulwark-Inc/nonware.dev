@@ -1,0 +1,933 @@
+# Type Conversion
+
+JavaScript programs constantly work with different types of data.
+
+A value might start as a string, but you may need it as a number. A number might need to become text. A value might need to be interpreted as `true` or `false`.
+
+This process is called **type conversion**.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const age = "25";
+
+const numberAge = Number(age);
+
+console.log(numberAge);
+
+</CodeBlock>
+
+The original value is a string:
+
+```text id="m4k8qp"
+"25"
+```
+
+After conversion, it is a number:
+
+```text id="v7n2cx"
+25
+```
+
+Understanding type conversion is essential when working with forms, APIs, URLs, databases, and user input.
+
+## What You'll Learn
+
+By the end of this lesson, you'll understand:
+
+* What type conversion means
+* Converting strings to numbers
+* Converting numbers to strings
+* Converting values to booleans
+* `Number()`
+* `String()`
+* `Boolean()`
+* `parseInt()` and `parseFloat()`
+* Type coercion
+* Common conversion mistakes
+* How conversion works with user input
+
+---
+
+## 1. Why Type Conversion Matters
+
+Consider this:
+
+<CodeBlock language="javascript">
+
+const age = "20";
+
+const nextYear = age + 1;
+
+console.log(nextYear);
+
+</CodeBlock>
+
+You might expect:
+
+<ExpectedOutput>
+
+21
+
+</ExpectedOutput>
+
+But JavaScript produces:
+
+<ExpectedOutput>
+
+201
+
+</ExpectedOutput>
+
+Why?
+
+Because `"20"` is a string.
+
+The `+` operator sees a string and performs string concatenation:
+
+```text id="r3f9kt"
+"20" + 1
+↓
+"201"
+```
+
+If you want mathematical addition, convert the string to a number first:
+
+<CodeBlock language="javascript">
+
+const age = "20";
+
+const nextYear = Number(age) + 1;
+
+console.log(nextYear);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+21
+
+</ExpectedOutput>
+
+This is one of the most common situations where type conversion matters.
+
+---
+
+## 2. Converting to a Number
+
+The simplest way to convert a value to a number is:
+
+<CodeBlock language="javascript">
+
+Number()
+
+</CodeBlock>
+
+For example:
+
+<CodeBlock language="javascript">
+
+const value = "42";
+
+const number = Number(value);
+
+console.log(number);
+
+console.log(typeof number);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+42
+
+number
+
+</ExpectedOutput>
+
+The string `"42"` became the number `42`.
+
+---
+
+## 3. Converting Decimal Strings
+
+`Number()` also works with decimal strings:
+
+<CodeBlock language="javascript">
+
+const price = Number("19.99");
+
+console.log(price);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+19.99
+
+</ExpectedOutput>
+
+And:
+
+<CodeBlock language="javascript">
+
+console.log(typeof price);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+number
+
+</ExpectedOutput>
+
+---
+
+## 4. Invalid Number Conversion
+
+What happens if the string doesn't contain a valid number?
+
+<CodeBlock language="javascript">
+
+const value = Number("hello");
+
+console.log(value);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+NaN
+
+</ExpectedOutput>
+
+`NaN` means **Not a Number**.
+
+You can detect it with:
+
+<CodeBlock language="javascript">
+
+console.log(Number.isNaN(value));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+This is important when processing user input.
+
+For example, someone might type:
+
+```text id="c5j2xq"
+hello
+```
+
+into a field where your application expects a number.
+
+---
+
+## 5. Converting to a String
+
+You can convert a value to a string with:
+
+<CodeBlock language="javascript">
+
+String()
+
+</CodeBlock>
+
+For example:
+
+<CodeBlock language="javascript">
+
+const age = 25;
+
+const text = String(age);
+
+console.log(text);
+
+console.log(typeof text);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+25
+
+string
+
+</ExpectedOutput>
+
+The number `25` has become the string `"25"`.
+
+This can be useful when building text:
+
+<CodeBlock language="javascript">
+
+const score = 100;
+
+const message = "Your score is " + String(score);
+
+console.log(message);
+
+</CodeBlock>
+
+---
+
+## 6. Converting to a Boolean
+
+You can convert values to booleans using:
+
+<CodeBlock language="javascript">
+
+Boolean()
+
+</CodeBlock>
+
+For example:
+
+<CodeBlock language="javascript">
+
+console.log(Boolean(1));
+
+console.log(Boolean(0));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+true
+
+false
+
+</ExpectedOutput>
+
+This is based on JavaScript's concept of **truthy** and **falsy** values.
+
+Some common falsy values are:
+
+<CodeBlock language="javascript">
+
+false
+
+0
+
+""
+
+null
+
+undefined
+
+NaN
+
+</CodeBlock>
+
+Most other values are truthy.
+
+For example:
+
+<CodeBlock language="javascript">
+
+console.log(Boolean("hello")); // true
+
+console.log(Boolean(42)); // true
+
+console.log(Boolean([])); // true
+
+</CodeBlock>
+
+We'll explore truthy and falsy values more deeply in the Control Flow section.
+
+---
+
+## 7. `parseInt()`
+
+`parseInt()` converts a string into an integer.
+
+<CodeBlock language="javascript">
+
+const value = parseInt("42");
+
+console.log(value);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+42
+
+</ExpectedOutput>
+
+It can also extract an integer from a string that begins with a number:
+
+<CodeBlock language="javascript">
+
+console.log(parseInt("42px"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+42
+
+</ExpectedOutput>
+
+This is different from `Number()`:
+
+<CodeBlock language="javascript">
+
+console.log(Number("42px"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+NaN
+
+</ExpectedOutput>
+
+Why?
+
+`Number()` expects the entire value to represent a valid number.
+
+`parseInt()` parses an integer from the beginning of the string.
+
+---
+
+## 8. `parseFloat()`
+
+`parseFloat()` is useful when you want to parse a decimal number.
+
+<CodeBlock language="javascript">
+
+const price = parseFloat("19.99");
+
+console.log(price);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+19.99
+
+</ExpectedOutput>
+
+It can also parse the beginning of a string:
+
+<CodeBlock language="javascript">
+
+console.log(parseFloat("19.99px"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+19.99
+
+</ExpectedOutput>
+
+Compare:
+
+<CodeBlock language="javascript">
+
+Number("19.99px"); // NaN
+
+parseFloat("19.99px"); // 19.99
+
+</CodeBlock>
+
+Which one you use depends on what your input actually represents.
+
+---
+
+## 9. `Number()` vs `parseInt()` vs `parseFloat()`
+
+A useful mental model:
+
+```text id="p8z4wn"
+Number()
+    ↓
+Convert the entire value into a number
+
+parseInt()
+    ↓
+Read an integer from the beginning
+
+parseFloat()
+    ↓
+Read a decimal number from the beginning
+```
+
+For example:
+
+<CodeBlock language="javascript">
+
+console.log(Number("42"));
+
+console.log(parseInt("42px"));
+
+console.log(parseFloat("19.99px"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+42
+
+42
+
+19.99
+
+</ExpectedOutput>
+
+---
+
+## 10. Converting Numbers to Strings
+
+You can also use `.toString()`:
+
+<CodeBlock language="javascript">
+
+const number = 100;
+
+const text = number.toString();
+
+console.log(text);
+
+console.log(typeof text);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+100
+
+string
+
+</ExpectedOutput>
+
+Both approaches work:
+
+<CodeBlock language="javascript">
+
+String(100);
+
+</CodeBlock>
+
+and:
+
+<CodeBlock language="javascript">
+
+(100).toString();
+
+</CodeBlock>
+
+`String()` is often convenient when you don't know whether the value is already a string.
+
+---
+
+## 11. Type Coercion
+
+JavaScript sometimes converts types **automatically**.
+
+This is called **type coercion**.
+
+For example:
+
+<CodeBlock language="javascript">
+
+console.log("5" + 2);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+52
+
+</ExpectedOutput>
+
+JavaScript converts the number `2` into a string.
+
+But consider:
+
+<CodeBlock language="javascript">
+
+console.log("5" - 2);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+3
+
+</ExpectedOutput>
+
+Here JavaScript converts the string `"5"` into a number because subtraction is a numeric operation.
+
+This can sometimes be convenient, but it can also make code confusing.
+
+---
+
+## 12. Explicit vs Implicit Conversion
+
+There are two useful concepts.
+
+### Explicit Conversion
+
+You tell JavaScript exactly what you want:
+
+<CodeBlock language="javascript">
+
+const age = Number("25");
+
+</CodeBlock>
+
+### Implicit Conversion
+
+JavaScript performs the conversion automatically:
+
+<CodeBlock language="javascript">
+
+const result = "25" - 5;
+
+</CodeBlock>
+
+The second example works, but the conversion isn't obvious from the code.
+
+For maintainable code, explicit conversion is often easier to understand.
+
+---
+
+## 13. User Input Is Usually Text
+
+This becomes especially important with forms.
+
+Imagine a user enters:
+
+```text id="q6x2mv"
+25
+```
+
+You might receive that value as a string:
+
+<CodeBlock language="javascript">
+
+const input = "25";
+
+console.log(typeof input);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+string
+
+</ExpectedOutput>
+
+If you want to perform calculations:
+
+<CodeBlock language="javascript">
+
+const age = Number(input);
+
+console.log(age + 1);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+26
+
+</ExpectedOutput>
+
+This pattern appears constantly in real applications.
+
+```text id="z3k7bh"
+User input
+    ↓
+String
+    ↓
+Validate
+    ↓
+Convert
+    ↓
+Use the value
+```
+
+---
+
+## 14. A Practical Example
+
+Imagine a simple shopping cart where the quantity comes from user input.
+
+<CodeBlock language="javascript">
+
+const price = 25;
+
+const quantityInput = "4";
+
+const quantity = Number(quantityInput);
+
+const total = price * quantity;
+
+console.log(`Total: $${total}`);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Total: $100
+
+</ExpectedOutput>
+
+The important part is:
+
+<CodeBlock language="javascript">
+
+const quantity = Number(quantityInput);
+
+</CodeBlock>
+
+You explicitly convert the input before using it in your calculation.
+
+---
+
+## 15. Validate Before Using Converted Data
+
+Conversion alone isn't always enough.
+
+Consider:
+
+<CodeBlock language="javascript">
+
+const input = "hello";
+
+const quantity = Number(input);
+
+console.log(quantity);
+
+</CodeBlock>
+
+You get:
+
+<ExpectedOutput>
+
+NaN
+
+</ExpectedOutput>
+
+So a real application should check the result.
+
+<CodeBlock language="javascript">
+
+const input = "hello";
+
+const quantity = Number(input);
+
+if (Number.isNaN(quantity)) &#123;
+console.log("Please enter a valid number.");
+&#125;
+
+</CodeBlock>
+
+This is the beginning of **input validation**.
+
+We'll explore `if` statements properly later.
+
+---
+
+## Try It Yourself
+
+Create:
+
+```text id="t8n4kc"
+type-conversion.js
+```
+
+Add:
+
+<CodeBlock language="javascript">
+
+const priceInput = "49.99";
+
+const quantityInput = "3";
+
+const price = Number(priceInput);
+
+const quantity = Number(quantityInput);
+
+const total = price * quantity;
+
+console.log(`Total: $${total.toFixed(2)}`);
+
+</CodeBlock>
+
+Run it:
+
+<Terminal>
+
+node type-conversion.js
+
+</Terminal>
+
+You should get:
+
+<ExpectedOutput>
+
+Total: $149.97
+
+</ExpectedOutput>
+
+Now deliberately break the input:
+
+<CodeBlock language="javascript">
+
+const quantityInput = "three";
+
+</CodeBlock>
+
+Run the program again.
+
+You'll get:
+
+<ExpectedOutput>
+
+Total: $NaN
+
+</ExpectedOutput>
+
+Now add:
+
+<CodeBlock language="javascript">
+
+if (Number.isNaN(quantity)) &#123;
+console.log("Invalid quantity.");
+&#125;
+
+</CodeBlock>
+
+You've just started building input validation.
+
+---
+
+## Common Mistakes
+
+<Warning>
+
+Remember that numeric strings and numbers are different types.
+
+<CodeBlock language="javascript">
+
+const age = "25";
+
+console.log(typeof age);
+
+</CodeBlock>
+
+The result is:
+
+<ExpectedOutput>
+
+string
+
+</ExpectedOutput>
+
+Use `Number()` when you need a numeric value.
+
+</Warning>
+
+Another common mistake is forgetting that `NaN` can appear after conversion:
+
+<CodeBlock language="javascript">
+
+const value = Number("hello");
+
+console.log(value); // NaN
+
+</CodeBlock>
+
+Always consider whether the input can be invalid.
+
+Also remember that:
+
+<CodeBlock language="javascript">
+
+Number("")
+
+</CodeBlock>
+
+produces:
+
+<ExpectedOutput>
+
+0
+
+</ExpectedOutput>
+
+So don't assume every non-numeric-looking input automatically becomes `NaN`. Validation rules should reflect what your application actually considers valid.
+
+---
+
+## Key Takeaways
+
+* Type conversion changes a value from one type to another.
+* `Number()` converts values to numbers.
+* `String()` converts values to strings.
+* `Boolean()` converts values to booleans.
+* `parseInt()` parses integers.
+* `parseFloat()` parses decimal numbers.
+* JavaScript can perform automatic type coercion.
+* Explicit conversion makes your intentions clearer.
+* User input commonly arrives as strings.
+* Always consider invalid input and `NaN`.
+* Conversion and validation often work together.
+
+## What's Next?
+
+You now know how JavaScript values can move between different types.
+
+Next, we'll explore **Template Literals** in more depth and learn how to build clean, dynamic strings using interpolation and multi-line text.

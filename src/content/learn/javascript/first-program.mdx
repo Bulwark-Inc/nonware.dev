@@ -1,0 +1,163 @@
+# Your First JavaScript Program
+
+You've set up your environment. Now let's write and run your first JavaScript program.
+
+We'll start with one of the simplest JavaScript programs possible and then see how to run it with Node.js.
+
+## Write Your First Program
+
+Create a file called `hello.js` inside your `javascript-learning` folder.
+
+Add the following code:
+
+<CodeBlock language="javascript">
+console.log("Hello, JavaScript!");
+</CodeBlock>
+
+The `console.log()` function prints a value to the console.
+
+In this example, we're asking JavaScript to print the text:
+
+```text
+Hello, JavaScript!
+```
+
+## Run the Program
+
+Open your terminal in the same folder as `hello.js`.
+
+Run:
+
+<Terminal>
+node hello.js
+</Terminal>
+
+You should see:
+
+<ExpectedOutput>
+Hello, JavaScript!
+</ExpectedOutput>
+
+Congratulations — you've just written and executed a JavaScript program.
+
+## Understanding the Code
+
+Let's break down the program:
+
+<CodeBlock language="javascript">
+console.log("Hello, JavaScript!");
+</CodeBlock>
+
+### `console`
+
+`console` is an object provided by the JavaScript environment that gives us access to the console.
+
+### `log()`
+
+`log()` is a method used to output information to the console.
+
+### `"Hello, JavaScript!"`
+
+This is a string — a sequence of characters enclosed in quotation marks.
+
+We'll learn much more about strings later in the tutorial.
+
+## Try Changing the Message
+
+Change the program to:
+
+<CodeBlock language="javascript">
+console.log("I am learning JavaScript!");
+</CodeBlock>
+
+Run it again:
+
+<Terminal>
+node hello.js
+</Terminal>
+
+You should now see:
+
+<ExpectedOutput>
+I am learning JavaScript!
+</ExpectedOutput>
+
+Try changing the message to anything you like.
+
+## Run Multiple Statements
+
+A JavaScript program can contain multiple statements.
+
+For example:
+
+<CodeBlock language="javascript">
+console.log("Hello!");
+console.log("I am learning JavaScript.");
+console.log("This is my first program.");
+</CodeBlock>
+
+Run it:
+
+<Terminal>
+node hello.js
+</Terminal>
+
+The output will be:
+
+<ExpectedOutput>
+Hello!
+I am learning JavaScript.
+This is my first program.
+</ExpectedOutput>
+
+JavaScript executes these statements from top to bottom.
+
+## Your First Small Experiment
+
+Try creating your own program.
+
+For example:
+
+<CodeBlock language="javascript">
+console.log("My name is Alex.");
+console.log("I am learning to code.");
+console.log("JavaScript is interesting!");
+</CodeBlock>
+
+Change the messages to your own text and run the program.
+
+The goal at this stage isn't to memorize everything. It's to get comfortable with the basic cycle:
+
+```text
+Write code → Run code → Read the output → Change the code → Run it again
+```
+
+This cycle will become a major part of your development workflow.
+
+## Common Mistakes
+
+<Warning>
+Make sure you run `node` from the directory containing your JavaScript file, or provide the correct path to the file.
+</Warning>
+
+For example, if your file is called `hello.js`, the command should be:
+
+<Terminal>
+node hello.js
+</Terminal>
+
+Also make sure the filename and capitalization are correct.
+
+## Key Takeaways
+
+* JavaScript code can be stored in `.js` files.
+* `console.log()` can be used to print information to the console.
+* Node.js can execute JavaScript files from the terminal.
+* JavaScript statements are executed from top to bottom.
+* Experimenting with small changes is one of the best ways to learn programming.
+
+## What's Next?
+
+You've now written and executed your first JavaScript program.
+
+Next, we'll start learning the building blocks of JavaScript itself, beginning with variables.

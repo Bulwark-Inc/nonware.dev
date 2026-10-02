@@ -1,0 +1,1025 @@
+# Strings
+
+A string is a sequence of text characters.
+
+Strings are one of the most commonly used data types in JavaScript. Names, messages, emails, URLs, labels, and much of the text you see in an application are represented as strings.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const name = "Ada";
+
+const message = "Welcome to JavaScript!";
+
+</CodeBlock>
+
+Both `"Ada"` and `"Welcome to JavaScript!"` are strings.
+
+## What You'll Learn
+
+By the end of this lesson, you'll understand:
+
+* What strings are
+* Single, double, and backtick quotes
+* String length
+* Accessing individual characters
+* Common string methods
+* Combining strings
+* Template literals
+* Searching and checking strings
+* Common string mistakes
+
+---
+
+## 1. Creating Strings
+
+You can create strings using single quotes:
+
+<CodeBlock language="javascript">
+
+const name = 'Ada';
+
+</CodeBlock>
+
+Double quotes:
+
+<CodeBlock language="javascript">
+
+const name = "Ada";
+
+</CodeBlock>
+
+Or backticks:
+
+<CodeBlock language="javascript">
+
+const name = `Ada`;
+
+</CodeBlock>
+
+All three create strings.
+
+The important thing is to use matching quotes.
+
+<CodeBlock language="javascript">
+
+const message = "Hello";
+
+</CodeBlock>
+
+This is valid.
+
+<CodeBlock language="javascript">
+
+const message = 'Hello';
+
+</CodeBlock>
+
+This is also valid.
+
+---
+
+## 2. Strings Can Contain Almost Any Text
+
+A string can contain letters, numbers, spaces, and symbols.
+
+<CodeBlock language="javascript">
+
+const username = "nonware";
+
+const email = "[hello@example.com](mailto:hello@example.com)";
+
+const code = "12345";
+
+const message = "Hello, developer!";
+
+</CodeBlock>
+
+Notice that this:
+
+<CodeBlock language="javascript">
+
+const code = "12345";
+
+</CodeBlock>
+
+is a string, not a number.
+
+Compare it with:
+
+<CodeBlock language="javascript">
+
+const code = 12345;
+
+</CodeBlock>
+
+This is a number.
+
+You can check the difference with `typeof`:
+
+<CodeBlock language="javascript">
+
+console.log(typeof "12345"); // string
+
+console.log(typeof 12345); // number
+
+</CodeBlock>
+
+---
+
+## 3. String Length
+
+Every string has a `length` property.
+
+<CodeBlock language="javascript">
+
+const language = "JavaScript";
+
+console.log(language.length);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+10
+
+</ExpectedOutput>
+
+The `length` property tells you how many characters are in the string.
+
+Spaces also count as characters:
+
+<CodeBlock language="javascript">
+
+const message = "Hello World";
+
+console.log(message.length);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+11
+
+</ExpectedOutput>
+
+There are 10 letters plus the space.
+
+---
+
+## 4. Accessing Characters
+
+Strings are ordered sequences of characters.
+
+You can access an individual character using its index.
+
+<CodeBlock language="javascript">
+
+const language = "JavaScript";
+
+console.log(language[0]);
+
+console.log(language[1]);
+
+console.log(language[2]);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+J
+
+a
+
+v
+
+</ExpectedOutput>
+
+JavaScript uses **zero-based indexing**.
+
+That means the first character is at index `0`.
+
+```text
+JavaScript
+0123456789
+```
+
+So:
+
+<CodeBlock language="javascript">
+
+language[0]; // "J"
+
+language[4]; // "S"
+
+language[9]; // "t"
+
+</CodeBlock>
+
+You can also use `.at()`:
+
+<CodeBlock language="javascript">
+
+console.log(language.at(0)); // J
+
+console.log(language.at(-1)); // t
+
+</CodeBlock>
+
+Using `-1` with `.at()` gives you the last character.
+
+---
+
+## 5. Strings Are Immutable
+
+Strings cannot be changed character-by-character.
+
+For example:
+
+<CodeBlock language="javascript">
+
+let name = "John";
+
+name[0] = "B";
+
+console.log(name);
+
+</CodeBlock>
+
+You should not expect this to change `"John"` into `"Bohn"`.
+
+Instead, create a new string:
+
+<CodeBlock language="javascript">
+
+let name = "John";
+
+name = "Bohn";
+
+console.log(name);
+
+</CodeBlock>
+
+This distinction is important:
+
+> String operations usually create a new string rather than modifying the original string.
+
+---
+
+## 6. Combining Strings
+
+You can combine strings with the `+` operator.
+
+<CodeBlock language="javascript">
+
+const firstName = "Ada";
+
+const lastName = "Lovelace";
+
+const fullName = firstName + " " + lastName;
+
+console.log(fullName);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Ada Lovelace
+
+</ExpectedOutput>
+
+The `" "` adds a space between the names.
+
+You can also combine strings with variables:
+
+<CodeBlock language="javascript">
+
+const product = "Laptop";
+
+const price = 1200;
+
+console.log("Product: " + product);
+
+console.log("Price: $" + price);
+
+</CodeBlock>
+
+This works, but there is often a cleaner approach.
+
+---
+
+## 7. Template Literals
+
+Template literals use backticks:
+
+<CodeBlock language="javascript">
+
+const message = `Hello!`;
+
+</CodeBlock>
+
+Their real power comes from **interpolation**.
+
+You can place JavaScript expressions inside:
+
+<CodeBlock language="javascript">
+
+const name = "Ada";
+
+const message = `Hello, ${name}!`;
+
+console.log(message);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Hello, Ada!
+
+</ExpectedOutput>
+
+The syntax is:
+
+<CodeBlock language="javascript">
+
+`${expression}`
+
+</CodeBlock>
+
+For example:
+
+<CodeBlock language="javascript">
+
+const price = 50;
+
+const quantity = 3;
+
+const message = `You bought ${quantity} items for $${price}.`;
+
+console.log(message);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+You bought 3 items for $50.
+
+</ExpectedOutput>
+
+You can even perform calculations:
+
+<CodeBlock language="javascript">
+
+const price = 50;
+
+const quantity = 3;
+
+console.log(`Total: $${price * quantity}`);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Total: $150
+
+</ExpectedOutput>
+
+<Tip>
+
+For strings containing variables or multiple pieces of dynamic data, template literals are usually much easier to read than repeated `+` concatenation.
+
+</Tip>
+
+---
+
+## 8. Changing Letter Case
+
+JavaScript provides methods for changing the case of a string.
+
+<CodeBlock language="javascript">
+
+const message = "Hello World";
+
+console.log(message.toUpperCase());
+
+console.log(message.toLowerCase());
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+HELLO WORLD
+
+hello world
+
+</ExpectedOutput>
+
+This is useful for things like normalizing user input.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const username = "ADMIN";
+
+console.log(username.toLowerCase());
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+admin
+
+</ExpectedOutput>
+
+---
+
+## 9. Removing Extra Whitespace
+
+User input can sometimes contain unnecessary spaces.
+
+JavaScript provides `trim()`:
+
+<CodeBlock language="javascript">
+
+const username = "   nonware   ";
+
+console.log(username.trim());
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+nonware
+
+</ExpectedOutput>
+
+There are also:
+
+<CodeBlock language="javascript">
+
+trimStart();
+
+trimEnd();
+
+</CodeBlock>
+
+For example:
+
+<CodeBlock language="javascript">
+
+const message = "   Hello";
+
+console.log(message.trimStart());
+
+</CodeBlock>
+
+---
+
+## 10. Checking Whether a String Contains Something
+
+The `includes()` method checks whether a string contains another string.
+
+<CodeBlock language="javascript">
+
+const message = "Welcome to Nonware.dev";
+
+console.log(message.includes("Nonware"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+And:
+
+<CodeBlock language="javascript">
+
+console.log(message.includes("Python"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+false
+
+</ExpectedOutput>
+
+This is useful when checking user input, URLs, messages, and other text.
+
+---
+
+## 11. Checking the Beginning and End
+
+You can check whether a string starts with something:
+
+<CodeBlock language="javascript">
+
+const url = "https://nonware.dev";
+
+console.log(url.startsWith("https://"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+Or whether it ends with something:
+
+<CodeBlock language="javascript">
+
+const filename = "lesson.mdx";
+
+console.log(filename.endsWith(".mdx"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+These methods return booleans.
+
+---
+
+## 12. Finding Text
+
+`indexOf()` tells you where a piece of text appears.
+
+<CodeBlock language="javascript">
+
+const message = "Hello JavaScript";
+
+console.log(message.indexOf("JavaScript"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+6
+
+</ExpectedOutput>
+
+Remember that indexing starts at `0`.
+
+If the text cannot be found, `indexOf()` returns:
+
+<CodeBlock language="javascript">
+
+-1
+
+</CodeBlock>
+
+Example:
+
+<CodeBlock language="javascript">
+
+console.log(message.indexOf("Python"));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+-1
+
+</ExpectedOutput>
+
+---
+
+## 13. Extracting Part of a String
+
+You can extract part of a string with `slice()`.
+
+<CodeBlock language="javascript">
+
+const language = "JavaScript";
+
+console.log(language.slice(0, 4));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Java
+
+</ExpectedOutput>
+
+The first number is the starting index.
+
+The second number is where the extraction stops.
+
+The ending index is not included.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const language = "JavaScript";
+
+console.log(language.slice(4));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Script
+
+</ExpectedOutput>
+
+You can also use negative indexes:
+
+<CodeBlock language="javascript">
+
+const language = "JavaScript";
+
+console.log(language.slice(-6));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Script
+
+</ExpectedOutput>
+
+---
+
+## 14. Replacing Text
+
+The `replace()` method can replace part of a string.
+
+<CodeBlock language="javascript">
+
+const message = "Hello John";
+
+const updatedMessage = message.replace("John", "Ada");
+
+console.log(updatedMessage);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Hello Ada
+
+</ExpectedOutput>
+
+The original string remains unchanged.
+
+<CodeBlock language="javascript">
+
+console.log(message);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Hello John
+
+</ExpectedOutput>
+
+This is another example of string immutability.
+
+---
+
+## 15. Splitting a String
+
+Sometimes you need to turn a string into an array.
+
+The `split()` method does this.
+
+<CodeBlock language="javascript">
+
+const technologies = "HTML,CSS,JavaScript";
+
+const result = technologies.split(",");
+
+console.log(result);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+[ 'HTML', 'CSS', 'JavaScript' ]
+
+</ExpectedOutput>
+
+This becomes particularly useful when working with data from APIs, files, URLs, or user input.
+
+You can also split by spaces:
+
+<CodeBlock language="javascript">
+
+const sentence = "JavaScript is powerful";
+
+const words = sentence.split(" ");
+
+console.log(words);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+[ 'JavaScript', 'is', 'powerful' ]
+
+</ExpectedOutput>
+
+---
+
+## 16. Joining Strings
+
+The opposite operation is often `join()`.
+
+Since `join()` belongs to arrays, we'll explore arrays properly later.
+
+For now, understand the idea:
+
+<CodeBlock language="javascript">
+
+const words = ["JavaScript", "is", "fun"];
+
+const sentence = words.join(" ");
+
+console.log(sentence);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+JavaScript is fun
+
+</ExpectedOutput>
+
+You can think of it as:
+
+```text
+string → split() → array
+
+array  → join()  → string
+```
+
+---
+
+## 17. A Practical Example
+
+Imagine you're creating a simple username system.
+
+<CodeBlock language="javascript">
+
+const input = "   AdaLovelace   ";
+
+const username = input.trim().toLowerCase();
+
+console.log(username);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+adalovelace
+
+</ExpectedOutput>
+
+Three operations happen:
+
+<CodeBlock language="javascript">
+
+input.trim()
+
+</CodeBlock>
+
+removes surrounding spaces.
+
+Then:
+
+<CodeBlock language="javascript">
+
+.toLowerCase()
+
+</CodeBlock>
+
+converts the result to lowercase.
+
+This is called **method chaining**.
+
+You can chain several string methods together when each method returns another string.
+
+---
+
+## Try It Yourself
+
+Create:
+
+```text
+strings.js
+```
+
+Then add:
+
+<CodeBlock language="javascript">
+
+const firstName = "Ada";
+
+const lastName = "Lovelace";
+
+const fullName = `${firstName} ${lastName}`;
+
+console.log(fullName);
+
+console.log(fullName.toUpperCase());
+
+console.log(fullName.length);
+
+</CodeBlock>
+
+Run it:
+
+<Terminal>
+
+node strings.js
+
+</Terminal>
+
+You should see something similar to:
+
+<ExpectedOutput>
+
+Ada Lovelace
+
+ADA LOVELACE
+
+12
+
+</ExpectedOutput>
+
+Now experiment.
+
+Try:
+
+<CodeBlock language="javascript">
+
+console.log(fullName.includes("Ada"));
+
+console.log(fullName.startsWith("Ada"));
+
+console.log(fullName.endsWith("Lovelace"));
+
+</CodeBlock>
+
+Then try:
+
+<CodeBlock language="javascript">
+
+console.log(fullName.slice(0, 3));
+
+</CodeBlock>
+
+See if you can predict the result before running the program.
+
+---
+
+## Common Mistakes
+
+<Warning>
+
+Remember that string indexes start at `0`, not `1`.
+
+For `"Hello"`:
+
+<CodeBlock language="javascript">
+
+text[0]; // H
+
+text[1]; // e
+
+text[4]; // o
+
+</CodeBlock>
+
+</Warning>
+
+Another common mistake is forgetting that string methods return new strings.
+
+<CodeBlock language="javascript">
+
+const name = "ada";
+
+name.toUpperCase();
+
+console.log(name);
+
+</CodeBlock>
+
+This still prints:
+
+<ExpectedOutput>
+
+ada
+
+</ExpectedOutput>
+
+If you want to keep the result:
+
+<CodeBlock language="javascript">
+
+const name = "ada";
+
+const upperName = name.toUpperCase();
+
+console.log(upperName);
+
+</CodeBlock>
+
+Or reassign the variable if it is declared with `let`:
+
+<CodeBlock language="javascript">
+
+let name = "ada";
+
+name = name.toUpperCase();
+
+console.log(name);
+
+</CodeBlock>
+
+---
+
+## Key Takeaways
+
+* Strings represent text in JavaScript.
+* Strings can use `'single'`, `"double"`, or `` `backtick` `` quotes.
+* `.length` tells you how many characters a string contains.
+* String indexes start at `0`.
+* Strings are immutable.
+* `toUpperCase()` and `toLowerCase()` change letter case.
+* `trim()` removes surrounding whitespace.
+* `includes()`, `startsWith()`, and `endsWith()` help inspect text.
+* `slice()` extracts part of a string.
+* `replace()` replaces text.
+* `split()` converts a string into an array.
+* Template literals make dynamic strings easier to write.
+
+## What's Next?
+
+You now know how to work with one of JavaScript's most important data types.
+
+Next, we'll look at **Numbers** — how JavaScript represents numbers, performs calculations, handles decimals, and works with special numeric values.

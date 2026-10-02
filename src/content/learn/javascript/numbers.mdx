@@ -1,0 +1,1085 @@
+# Numbers
+
+Numbers are one of the most fundamental data types in JavaScript.
+
+You use them for things like:
+
+* Prices
+* Quantities
+* Scores
+* Ages
+* Measurements
+* Percentages
+* Coordinates
+* Counters
+* Calculations
+
+For example:
+
+<CodeBlock language="javascript">
+
+const price = 49.99;
+
+const quantity = 3;
+
+const total = price * quantity;
+
+console.log(total);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+149.97
+
+</ExpectedOutput>
+
+JavaScript makes working with numbers straightforward, but there are a few important details every developer should understand.
+
+## What You'll Learn
+
+By the end of this lesson, you'll understand:
+
+* Integers and decimals
+* Basic mathematical operations
+* Operator precedence
+* Remainders
+* Incrementing and decrementing
+* Useful number methods
+* `NaN`
+* `Infinity`
+* Floating-point precision
+* Rounding numbers
+* Random numbers
+
+---
+
+## 1. Creating Numbers
+
+A number does not need quotation marks.
+
+<CodeBlock language="javascript">
+
+const age = 25;
+
+const score = 100;
+
+const temperature = 28.5;
+
+</CodeBlock>
+
+These are all numbers.
+
+You can verify this with `typeof`:
+
+<CodeBlock language="javascript">
+
+console.log(typeof 25);
+
+console.log(typeof 28.5);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+number
+
+number
+
+</ExpectedOutput>
+
+JavaScript uses the `number` type for both whole numbers and decimal numbers.
+
+---
+
+## 2. Integers and Decimals
+
+A whole number is commonly called an integer:
+
+<CodeBlock language="javascript">
+
+const users = 100;
+
+const score = 95;
+
+</CodeBlock>
+
+A number with a decimal part is a decimal or floating-point number:
+
+<CodeBlock language="javascript">
+
+const price = 19.99;
+
+const temperature = 36.5;
+
+</CodeBlock>
+
+Both are JavaScript `number` values.
+
+<CodeBlock language="javascript">
+
+console.log(typeof 100); // number
+
+console.log(typeof 19.99); // number
+
+</CodeBlock>
+
+You don't need a separate type for integers and decimals in normal JavaScript code.
+
+---
+
+## 3. Basic Arithmetic
+
+JavaScript supports the familiar mathematical operators.
+
+<CodeBlock language="javascript">
+
+const a = 20;
+
+const b = 6;
+
+console.log(a + b); // 26
+
+console.log(a - b); // 14
+
+console.log(a * b); // 120
+
+console.log(a / b); // 3.333...
+
+</CodeBlock>
+
+You can also calculate powers with `**`:
+
+<CodeBlock language="javascript">
+
+console.log(2 ** 3);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+8
+
+</ExpectedOutput>
+
+This means:
+
+```text id="r7nq2m"
+2 × 2 × 2
+```
+
+---
+
+## 4. The Remainder Operator
+
+The `%` operator returns the remainder after division.
+
+<CodeBlock language="javascript">
+
+console.log(10 % 3);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+1
+
+</ExpectedOutput>
+
+Because:
+
+```text id="2x8h5p"
+10 ÷ 3 = 3 remainder 1
+```
+
+This is useful for many programming problems.
+
+For example, checking whether a number is even:
+
+<CodeBlock language="javascript">
+
+const number = 12;
+
+console.log(number % 2 === 0);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+An odd number produces a remainder of `1`:
+
+<CodeBlock language="javascript">
+
+console.log(13 % 2 === 0);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+false
+
+</ExpectedOutput>
+
+This simple technique becomes especially useful when working with loops and conditions.
+
+---
+
+## 5. Operator Precedence
+
+JavaScript follows rules about the order in which mathematical operations are performed.
+
+Consider:
+
+<CodeBlock language="javascript">
+
+const result = 10 + 5 * 2;
+
+console.log(result);
+
+</CodeBlock>
+
+The result is:
+
+<ExpectedOutput>
+
+20
+
+</ExpectedOutput>
+
+Multiplication happens before addition.
+
+You can use parentheses to control the order:
+
+<CodeBlock language="javascript">
+
+const result = (10 + 5) * 2;
+
+console.log(result);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+30
+
+</ExpectedOutput>
+
+A useful rule is:
+
+> When the order matters, use parentheses to make your intention obvious.
+
+---
+
+## 6. Incrementing and Decrementing
+
+You will often need to increase or decrease a number by one.
+
+JavaScript provides:
+
+<CodeBlock language="javascript">
+
+++
+
+</CodeBlock>
+
+and:
+
+<CodeBlock language="javascript">
+
+--
+
+</CodeBlock>
+
+For example:
+
+<CodeBlock language="javascript">
+
+let count = 0;
+
+count++;
+
+console.log(count);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+1
+
+</ExpectedOutput>
+
+And:
+
+<CodeBlock language="javascript">
+
+let count = 5;
+
+count--;
+
+console.log(count);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+4
+
+</ExpectedOutput>
+
+These operators are especially common when working with loops.
+
+---
+
+## 7. Assignment Operators
+
+You can also perform calculations while assigning the result.
+
+Instead of:
+
+<CodeBlock language="javascript">
+
+let score = 100;
+
+score = score + 10;
+
+</CodeBlock>
+
+you can write:
+
+<CodeBlock language="javascript">
+
+let score = 100;
+
+score += 10;
+
+</CodeBlock>
+
+The result is:
+
+<ExpectedOutput>
+
+110
+
+</ExpectedOutput>
+
+Other examples:
+
+<CodeBlock language="javascript">
+
+let value = 100;
+
+value -= 20;
+
+value *= 2;
+
+value /= 4;
+
+</CodeBlock>
+
+These are called **compound assignment operators**.
+
+They are especially useful when updating counters, totals, balances, and other changing values.
+
+---
+
+## 8. Useful Number Methods
+
+JavaScript provides several methods for working with numbers.
+
+### `toString()`
+
+You can convert a number into a string:
+
+<CodeBlock language="javascript">
+
+const number = 123;
+
+const text = number.toString();
+
+console.log(text);
+
+console.log(typeof text);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+123
+
+string
+
+</ExpectedOutput>
+
+Notice that the value is now text.
+
+---
+
+### `toFixed()`
+
+`toFixed()` controls the number of digits after the decimal point.
+
+<CodeBlock language="javascript">
+
+const price = 19.9876;
+
+console.log(price.toFixed(2));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+19.99
+
+</ExpectedOutput>
+
+An important detail:
+
+`toFixed()` returns a **string**, not a number.
+
+<CodeBlock language="javascript">
+
+const price = 19.9876;
+
+const formatted = price.toFixed(2);
+
+console.log(typeof formatted);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+string
+
+</ExpectedOutput>
+
+This distinction matters when performing additional calculations.
+
+---
+
+## 9. Rounding Numbers
+
+JavaScript provides several useful methods for rounding.
+
+### `Math.round()`
+
+Rounds to the nearest integer.
+
+<CodeBlock language="javascript">
+
+console.log(Math.round(4.4)); // 4
+
+console.log(Math.round(4.6)); // 5
+
+</CodeBlock>
+
+### `Math.floor()`
+
+Rounds down.
+
+<CodeBlock language="javascript">
+
+console.log(Math.floor(4.9));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+4
+
+</ExpectedOutput>
+
+### `Math.ceil()`
+
+Rounds up.
+
+<CodeBlock language="javascript">
+
+console.log(Math.ceil(4.1));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+5
+
+</ExpectedOutput>
+
+You can think of them like this:
+
+```text id="4n3w8v"
+Math.floor() → down
+
+Math.ceil()  → up
+
+Math.round() → nearest
+```
+
+---
+
+## 10. Finding the Largest and Smallest Values
+
+`Math.max()` returns the largest number:
+
+<CodeBlock language="javascript">
+
+const largest = Math.max(10, 50, 20, 5);
+
+console.log(largest);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+50
+
+</ExpectedOutput>
+
+`Math.min()` returns the smallest:
+
+<CodeBlock language="javascript">
+
+const smallest = Math.min(10, 50, 20, 5);
+
+console.log(smallest);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+5
+
+</ExpectedOutput>
+
+These are useful when comparing numeric values.
+
+---
+
+## 11. Absolute Values
+
+`Math.abs()` returns the absolute value of a number.
+
+<CodeBlock language="javascript">
+
+console.log(Math.abs(-10));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+10
+
+</ExpectedOutput>
+
+For example:
+
+<CodeBlock language="javascript">
+
+const temperatureDifference = -8;
+
+console.log(Math.abs(temperatureDifference));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+8
+
+</ExpectedOutput>
+
+The negative sign is removed.
+
+---
+
+## 12. Random Numbers
+
+JavaScript provides:
+
+<CodeBlock language="javascript">
+
+Math.random()
+
+</CodeBlock>
+
+It produces a pseudo-random number between `0` and `1`.
+
+<CodeBlock language="javascript">
+
+console.log(Math.random());
+
+</CodeBlock>
+
+You might get:
+
+```text id="6n4q0c"
+0.372841...
+```
+
+or:
+
+```text id="f2k9sm"
+0.814293...
+```
+
+The exact value changes each time.
+
+### Random Integer
+
+A common pattern for generating a random integer from `0` to `9` is:
+
+<CodeBlock language="javascript">
+
+const number = Math.floor(Math.random() * 10);
+
+console.log(number);
+
+</CodeBlock>
+
+The result can be:
+
+```text id="g6x1p4"
+0
+```
+
+through:
+
+```text id="w8c3zr"
+9
+```
+
+For a number from `1` to `10`:
+
+<CodeBlock language="javascript">
+
+const number = Math.floor(Math.random() * 10) + 1;
+
+console.log(number);
+
+</CodeBlock>
+
+This pattern becomes useful for games, simulations, randomized UI behavior, and many other applications.
+
+<Note>
+
+`Math.random()` is not suitable for security-sensitive randomness such as generating passwords, authentication tokens, or cryptographic keys.
+
+</Note>
+
+---
+
+## 13. `NaN`
+
+JavaScript has a special numeric value called:
+
+<CodeBlock language="javascript">
+
+NaN
+
+</CodeBlock>
+
+It means **Not a Number**.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const result = 10 / "hello";
+
+console.log(result);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+NaN
+
+</ExpectedOutput>
+
+It can also appear when converting invalid text into a number:
+
+<CodeBlock language="javascript">
+
+const value = Number("hello");
+
+console.log(value);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+NaN
+
+</ExpectedOutput>
+
+You can check for `NaN` with:
+
+<CodeBlock language="javascript">
+
+console.log(Number.isNaN(value));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+<Warning>
+
+Don't check for `NaN` with `value === NaN`.
+
+Use:
+
+<CodeBlock language="javascript">
+
+Number.isNaN(value)
+
+</CodeBlock>
+
+instead.
+
+</Warning>
+
+---
+
+## 14. `Infinity`
+
+JavaScript also has a special numeric value called `Infinity`.
+
+For example:
+
+<CodeBlock language="javascript">
+
+console.log(10 / 0);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+Infinity
+
+</ExpectedOutput>
+
+You can also get negative infinity:
+
+<CodeBlock language="javascript">
+
+console.log(-10 / 0);
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+-Infinity
+
+</ExpectedOutput>
+
+You can check whether a value is finite with:
+
+<CodeBlock language="javascript">
+
+console.log(Number.isFinite(100));
+
+console.log(Number.isFinite(Infinity));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+true
+
+false
+
+</ExpectedOutput>
+
+---
+
+## 15. Floating-Point Precision
+
+Here's one of JavaScript's most famous surprises:
+
+<CodeBlock language="javascript">
+
+console.log(0.1 + 0.2);
+
+</CodeBlock>
+
+You might expect:
+
+<ExpectedOutput>
+
+0.3
+
+</ExpectedOutput>
+
+But JavaScript produces something similar to:
+
+<ExpectedOutput>
+
+0.30000000000000004
+
+</ExpectedOutput>
+
+Why?
+
+Computers represent many decimal numbers using binary floating-point representation. Some decimal fractions cannot be represented exactly in that format.
+
+This is not unique to JavaScript; it is a common issue in computer programming.
+
+For display purposes, you can round the result:
+
+<CodeBlock language="javascript">
+
+const result = 0.1 + 0.2;
+
+console.log(result.toFixed(2));
+
+</CodeBlock>
+
+Output:
+
+<ExpectedOutput>
+
+0.30
+
+</ExpectedOutput>
+
+For financial applications, however, don't blindly rely on floating-point arithmetic for exact monetary calculations. Real applications often use integer units such as cents or specialized decimal arithmetic.
+
+---
+
+## 16. A Practical Example
+
+Imagine you're calculating an order total.
+
+<CodeBlock language="javascript">
+
+const price = 29.99;
+
+const quantity = 3;
+
+const taxRate = 0.075;
+
+const subtotal = price * quantity;
+
+const tax = subtotal * taxRate;
+
+const total = subtotal + tax;
+
+console.log(`Subtotal: $${subtotal.toFixed(2)}`);
+
+console.log(`Tax: $${tax.toFixed(2)}`);
+
+console.log(`Total: $${total.toFixed(2)}`);
+
+</CodeBlock>
+
+The important idea isn't just the arithmetic.
+
+You're combining:
+
+* Variables
+* Numbers
+* Operators
+* Expressions
+* Methods
+* Template literals
+
+This is how simple JavaScript features start becoming useful application logic.
+
+---
+
+## Try It Yourself
+
+Create:
+
+```text id="k5m2qx"
+numbers.js
+```
+
+Then add:
+
+<CodeBlock language="javascript">
+
+const price = 49.99;
+
+const quantity = 4;
+
+const subtotal = price * quantity;
+
+const discount = subtotal * 0.15;
+
+const finalPrice = subtotal - discount;
+
+console.log(`Subtotal: $${subtotal.toFixed(2)}`);
+
+console.log(`Discount: $${discount.toFixed(2)}`);
+
+console.log(`Final price: $${finalPrice.toFixed(2)}`);
+
+</CodeBlock>
+
+Run it:
+
+<Terminal>
+
+node numbers.js
+
+</Terminal>
+
+You should get approximately:
+
+<ExpectedOutput>
+
+Subtotal: $199.96
+
+Discount: $29.99
+
+Final price: $169.97
+
+</ExpectedOutput>
+
+Now experiment.
+
+Try changing the discount:
+
+<CodeBlock language="javascript">
+
+const discount = subtotal * 0.20;
+
+</CodeBlock>
+
+Then calculate the amount saved:
+
+<CodeBlock language="javascript">
+
+console.log(`You saved: $${discount.toFixed(2)}`);
+
+</CodeBlock>
+
+Finally, try calculating the average price per item:
+
+<CodeBlock language="javascript">
+
+const average = finalPrice / quantity;
+
+console.log(`Average: $${average.toFixed(2)}`);
+
+</CodeBlock>
+
+---
+
+## Common Mistakes
+
+<Warning>
+
+Numbers and numeric strings are different.
+
+<CodeBlock language="javascript">
+
+const a = 10;
+
+const b = "10";
+
+console.log(a === b); // false
+
+</CodeBlock>
+
+The first value is a number. The second is a string.
+
+</Warning>
+
+Another common mistake is forgetting that `toFixed()` returns a string:
+
+<CodeBlock language="javascript">
+
+const price = 19.99;
+
+const formatted = price.toFixed(2);
+
+console.log(typeof formatted); // string
+
+</CodeBlock>
+
+Also be careful with floating-point calculations:
+
+<CodeBlock language="javascript">
+
+console.log(0.1 + 0.2);
+
+</CodeBlock>
+
+Don't assume every decimal calculation will produce an exact decimal representation.
+
+---
+
+## Key Takeaways
+
+* JavaScript uses the `number` type for integers and decimals.
+* Arithmetic uses `+`, `-`, `*`, `/`, `%`, and `**`.
+* `%` gives you the remainder.
+* `Math.round()`, `Math.floor()`, and `Math.ceil()` help with rounding.
+* `Math.max()` and `Math.min()` find extreme values.
+* `Math.random()` generates pseudo-random values between `0` and `1`.
+* `NaN` represents an invalid numeric result.
+* `Infinity` represents an unbounded numeric result.
+* Floating-point arithmetic can produce surprising decimal results.
+* `toFixed()` is useful for formatting numbers, but returns a string.
+
+## What's Next?
+
+Numbers let your programs calculate and measure things.
+
+Next, we'll look at **Type Conversion** - how to convert values between strings, numbers, and booleans, and why this becomes important when working with user input.

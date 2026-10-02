@@ -1,0 +1,814 @@
+# Operators
+
+Operators are symbols or keywords that JavaScript uses to perform operations on values.
+
+For example:
+
+<CodeBlock language="javascript">
+
+let total = price * quantity;
+
+</CodeBlock>
+
+Here, `*` is an operator that multiplies `price` by `quantity`.
+
+Operators allow you to:
+
+* Perform calculations
+* Assign values
+* Compare values
+* Make decisions
+* Combine conditions
+* Increase or decrease values
+
+## What You'll Learn
+
+In this lesson, you'll learn:
+
+* Arithmetic operators
+* Assignment operators
+* Comparison operators
+* Logical operators
+* Increment and decrement operators
+* The difference between `==` and `===`
+* Operator precedence
+* How operators are used in real programs
+
+---
+
+## Arithmetic Operators
+
+Arithmetic operators are used to perform mathematical calculations.
+
+<CodeBlock language="javascript">
+
+let a = 10;
+let b = 3;
+
+console.log(a + b); // 13
+console.log(a - b); // 7
+console.log(a * b); // 30
+console.log(a / b); // 3.3333333333333335
+console.log(a % b); // 1
+
+</CodeBlock>
+
+### Common Arithmetic Operators
+
+| Operator | Meaning        | Example   |
+| -------- | -------------- | --------- |
+| `+`      | Addition       | `10 + 3`  |
+| `-`      | Subtraction    | `10 - 3`  |
+| `*`      | Multiplication | `10 * 3`  |
+| `/`      | Division       | `10 / 3`  |
+| `%`      | Remainder      | `10 % 3`  |
+| `**`     | Exponentiation | `10 ** 3` |
+
+### The Remainder Operator `%`
+
+The `%` operator returns the remainder after division.
+
+<CodeBlock language="javascript">
+
+console.log(10 % 3); // 1
+console.log(20 % 5); // 0
+console.log(7 % 2);  // 1
+
+</CodeBlock>
+
+This is particularly useful when checking whether a number is even or odd.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const number = 10;
+
+console.log(number % 2 === 0);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+If the remainder is `0`, the number is even.
+
+---
+
+## The `+` Operator and Strings
+
+The `+` operator can also be used to join strings together.
+
+<CodeBlock language="javascript">
+
+const firstName = "Alex";
+const lastName = "Johnson";
+
+const fullName = firstName + " " + lastName;
+
+console.log(fullName);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+Alex Johnson
+
+</ExpectedOutput>
+
+However, be careful when combining strings and numbers.
+
+<CodeBlock language="javascript">
+
+console.log("5" + 2);
+console.log(5 + 2);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+52
+7
+
+</ExpectedOutput>
+
+When JavaScript sees a string and a number with `+`, it can convert the number to a string and join them together.
+
+This is one reason understanding JavaScript data types is important.
+
+---
+
+## Assignment Operators
+
+Assignment operators are used to assign values to variables.
+
+The most basic assignment operator is `=`.
+
+<CodeBlock language="javascript">
+
+let score = 100;
+
+</CodeBlock>
+
+This means:
+
+> Store the value `100` inside the variable `score`.
+
+JavaScript also provides compound assignment operators.
+
+| Operator | Meaning             | Example  |
+| -------- | ------------------- | -------- |
+| `=`      | Assign              | `x = 10` |
+| `+=`     | Add and assign      | `x += 5` |
+| `-=`     | Subtract and assign | `x -= 5` |
+| `*=`     | Multiply and assign | `x *= 5` |
+| `/=`     | Divide and assign   | `x /= 5` |
+
+For example:
+
+<CodeBlock language="javascript">
+
+let score = 10;
+
+score += 5;
+
+console.log(score);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+15
+
+</ExpectedOutput>
+
+This:
+
+<CodeBlock language="javascript">
+
+score += 5;
+
+</CodeBlock>
+
+is equivalent to:
+
+<CodeBlock language="javascript">
+
+score = score + 5;
+
+</CodeBlock>
+
+---
+
+## Comparison Operators
+
+Comparison operators compare two values.
+
+The result of a comparison is a Boolean:
+
+<CodeBlock language="text">
+
+true
+
+</CodeBlock>
+
+or:
+
+<CodeBlock language="text">
+
+false
+
+</CodeBlock>
+
+For example:
+
+<CodeBlock language="javascript">
+
+const age = 20;
+
+console.log(age > 18);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+Because `20` is greater than `18`.
+
+### Common Comparison Operators
+
+| Operator | Meaning                  |
+| -------- | ------------------------ |
+| `>`      | Greater than             |
+| `<`      | Less than                |
+| `>=`     | Greater than or equal to |
+| `<=`     | Less than or equal to    |
+| `===`    | Strictly equal           |
+| `!==`    | Strictly not equal       |
+
+Examples:
+
+<CodeBlock language="javascript">
+
+console.log(10 > 5);
+console.log(10 < 5);
+console.log(10 >= 10);
+console.log(10 `<=` 10);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+true
+false
+true
+true
+
+</ExpectedOutput>
+
+Comparison operators become especially useful when writing conditions.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const age = 25;
+
+if (age >= 18) &#123;
+console.log("You are an adult.");
+&#125;
+
+</CodeBlock>
+
+---
+
+## `===` vs `==`
+
+One of the most important things to understand in JavaScript is the difference between `==` and `===`.
+
+### Loose Equality: `==`
+
+The `==` operator compares values after allowing JavaScript to perform type conversion when necessary.
+
+<CodeBlock language="javascript">
+
+console.log(5 == "5");
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+Although one value is a number and the other is a string, JavaScript converts the values before comparing them.
+
+### Strict Equality: `===`
+
+The `===` operator checks both the value and the type.
+
+<CodeBlock language="javascript">
+
+console.log(5 === "5");
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+false
+
+</ExpectedOutput>
+
+The values look similar, but their types are different:
+
+<CodeBlock language="javascript">
+
+5
+
+</CodeBlock>
+
+is a number, while:
+
+<CodeBlock language="javascript">
+
+"5"
+
+</CodeBlock>
+
+is a string.
+
+<Note>
+
+In most modern JavaScript code, prefer `===` and `!==` because they make comparisons more predictable by avoiding implicit type conversion.
+
+</Note>
+
+For example:
+
+<CodeBlock language="javascript">
+
+console.log(5 === 5);   // true
+console.log(5 === "5"); // false
+console.log(5 !== "5"); // true
+
+</CodeBlock>
+
+---
+
+## Logical Operators
+
+Logical operators allow you to combine or reverse conditions.
+
+JavaScript has three main logical operators:
+
+| Operator | Meaning |
+| -------- | ------- |
+| &amp;     | AND     |
+| &#124;&#124;     | OR      | 
+| &#33;      | NOT     |
+
+### AND `&&`
+
+The `&&` operator returns `true` when both conditions are true.
+
+<CodeBlock language="javascript">
+
+const age = 25;
+const hasLicense = true;
+
+console.log(age >= 18 && hasLicense);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+Both conditions must be true.
+
+### OR &#124;&#124;
+
+The &#124;&#124; operator returns `true` when at least one condition is true.
+
+<CodeBlock language="javascript">
+
+const isAdmin = false;
+const isOwner = true;
+
+console.log(isAdmin &#124;&#124; isOwner);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+The user is not an admin, but they are the owner.
+
+### NOT `!`
+
+The `!` operator reverses a Boolean value.
+
+<CodeBlock language="javascript">
+
+const isLoggedIn = true;
+
+console.log(!isLoggedIn);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+false
+
+</ExpectedOutput>
+
+Because `isLoggedIn` is `true`, `!isLoggedIn` becomes `false`.
+
+Logical operators are extremely useful when building real application logic.
+
+---
+
+## Increment and Decrement Operators
+
+The increment operator `++` increases a value by `1`.
+
+The decrement operator `--` decreases a value by `1`.
+
+<CodeBlock language="javascript">
+
+let count = 5;
+
+count++;
+
+console.log(count);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+6
+
+</ExpectedOutput>
+
+Similarly:
+
+<CodeBlock language="javascript">
+
+let count = 5;
+
+count--;
+
+console.log(count);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+4
+
+</ExpectedOutput>
+
+These operators are commonly used in loops and counters.
+
+---
+
+## Operator Precedence
+
+When an expression contains multiple operators, JavaScript follows a specific order when evaluating them.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const result = 10 + 5 * 2;
+
+console.log(result);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+20
+
+</ExpectedOutput>
+
+The multiplication happens before the addition:
+
+<CodeBlock language="text">
+
+5 * 2 = 10
+10 + 10 = 20
+
+</CodeBlock>
+
+You can use parentheses to make the order explicit.
+
+<CodeBlock language="javascript">
+
+const result = (10 + 5) * 2;
+
+console.log(result);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+30
+
+</ExpectedOutput>
+
+The parentheses force JavaScript to evaluate `10 + 5` first.
+
+<Warning>
+
+When an expression becomes difficult to read, use parentheses to make your intention clear. Don't rely on remembering complex precedence rules when simple parentheses can make the code easier to understand.
+
+</Warning>
+
+---
+
+## Operators in Real Programs
+
+Operators become much more useful when combined with variables and application logic.
+
+Imagine you are building a small shopping application.
+
+A customer buys three products that cost `$50` each, with `$10` shipping.
+
+<CodeBlock language="javascript">
+
+const price = 50;
+const quantity = 3;
+const shipping = 10;
+
+const subtotal = price * quantity;
+const total = subtotal + shipping;
+
+console.log(subtotal); // 150
+console.log(total); // 160
+
+</CodeBlock>
+
+Here, several operators work together:
+
+<CodeBlock language="text">
+
+price * quantity
+
+</CodeBlock>
+
+calculates the subtotal.
+
+Then:
+
+<CodeBlock language="text">
+
+subtotal + shipping
+
+</CodeBlock>
+
+calculates the final total.
+
+We can also use comparison operators to determine whether the customer qualifies for free shipping.
+
+<CodeBlock language="javascript">
+
+const minimumForFreeShipping = 100;
+
+const qualifiesForFreeShipping = subtotal >= minimumForFreeShipping;
+
+console.log(qualifiesForFreeShipping);
+
+</CodeBlock>
+
+<ExpectedOutput>
+
+true
+
+</ExpectedOutput>
+
+Because the subtotal is `$150`, which is greater than or equal to `$100`.
+
+This is the foundation of the kind of logic you'll use in real applications.
+
+---
+
+## Try It Yourself
+
+Create a file called:
+
+<CodeBlock language="text">
+
+operators.js
+
+</CodeBlock>
+
+Add the following code:
+
+<CodeBlock language="javascript">
+
+const price = 25;
+const quantity = 4;
+
+const subtotal = price * quantity;
+const discount = subtotal * 0.10;
+const total = subtotal - discount;
+
+console.log("Subtotal:", subtotal);
+console.log("Discount:", discount);
+console.log("Total:", total);
+
+</CodeBlock>
+
+Run it with:
+
+<Terminal>
+
+<CodeBlock language="bash">
+
+node operators.js
+
+</CodeBlock>
+
+</Terminal>
+
+You should see:
+
+<ExpectedOutput>
+
+Subtotal: 100
+Discount: 10
+Total: 90
+
+</ExpectedOutput>
+
+Now change:
+
+<CodeBlock language="javascript">
+
+const quantity = 4;
+
+</CodeBlock>
+
+to:
+
+<CodeBlock language="javascript">
+
+const quantity = 10;
+
+</CodeBlock>
+
+Run the program again.
+
+Then add:
+
+<CodeBlock language="javascript">
+
+console.log(total >= 100);
+
+</CodeBlock>
+
+Run the program once more.
+
+### Think About It
+
+Before running the program, try to predict:
+
+1. What will the new subtotal be?
+2. What will the discount be?
+3. What will the final total be?
+4. Will `total >= 100` be `true` or `false`?
+
+Being able to predict the result before running your code is a great way to strengthen your understanding.
+
+---
+
+## Common Mistakes
+
+### Mistake 1: Confusing `=` with `===`
+
+Remember:
+
+<CodeBlock language="javascript">
+
+let age = 20;
+
+</CodeBlock>
+
+uses `=` to assign a value.
+
+While:
+
+<CodeBlock language="javascript">
+
+age === 20;
+
+</CodeBlock>
+
+checks whether the value and type are strictly equal.
+
+They perform completely different jobs.
+
+### Mistake 2: Forgetting About Types
+
+Remember that:
+
+<CodeBlock language="javascript">
+
+"10"
+
+</CodeBlock>
+
+is a string, while:
+
+<CodeBlock language="javascript">
+
+10
+
+</CodeBlock>
+
+is a number.
+
+Therefore:
+
+<CodeBlock language="javascript">
+
+console.log("10" === 10);
+
+</CodeBlock>
+
+produces:
+
+<ExpectedOutput>
+
+false
+
+</ExpectedOutput>
+
+Also remember that:
+
+<CodeBlock language="javascript">
+
+console.log("10" + 5);
+
+</CodeBlock>
+
+produces:
+
+<ExpectedOutput>
+
+105
+
+</ExpectedOutput>
+
+because the `+` operator can perform string concatenation.
+
+### Mistake 3: Writing Difficult Expressions
+
+Instead of trying to remember complicated precedence rules, use parentheses when they make your intention clearer.
+
+For example:
+
+<CodeBlock language="javascript">
+
+const total = (price * quantity) + shipping;
+
+</CodeBlock>
+
+is easier to understand than relying on the reader to remember the precedence of every operator.
+
+---
+
+## Key Takeaways
+
+* Operators allow JavaScript to perform operations on values.
+* Arithmetic operators perform calculations.
+* Assignment operators store and update values.
+* Comparison operators produce `true` or `false`.
+* `===` checks both value and type.
+* `==` allows type conversion during comparison.
+* `&&`, `||`, and `!` are used for logical operations.
+* `++` increases a value by `1`.
+* `--` decreases a value by `1`.
+* Parentheses can make complex expressions easier to understand.
+* Operators become especially powerful when combined with variables and conditions.
+
+---
+
+## What's Next?
+
+Now that you understand how JavaScript works with values and operators, it's time to learn how to work with **text**.
+
+Next, you'll learn about **Strings** — how to create them, combine them, access individual characters, use template literals, and work with useful string methods.
